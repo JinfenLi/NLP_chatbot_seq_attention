@@ -241,16 +241,22 @@ def decode_sequence(input_seq):
 
 print("the topics include AI, botprofile, computer, emotion, food, gossip, greetings,"
       "health, history, humor, literature, money, movies, politics,psychology,science,sports,trivia")
+
+import webbrowser
 while True:
 
     print('you say:')
     ans = input()
-    input_sequences = tokenizer_inputs.texts_to_sequences([ans])
-    encoder_inputs = pad_sequences(input_sequences, maxlen=max_len_input)
+    if 'weather' in ans:
+        webbrowser.open(
+            "https://www.google.com/search?q=what+is+the+weather+today&rlz=1C5CHFA_enUS814US814&oq=what+is+the+weather+today&aqs=chrome..69i57j0l5.15932j0j7&sourceid=chrome&ie=UTF-8")
+    else:
+        input_sequences = tokenizer_inputs.texts_to_sequences([ans])
+        encoder_inputs = pad_sequences(input_sequences, maxlen=max_len_input)
 
-    input_seq = encoder_inputs[0:1]
-    translation = decode_sequence(input_seq)
-    print('chat say: ', translation)
+        input_seq = encoder_inputs[0:1]
+        translation = decode_sequence(input_seq)
+        print('chat say: ', translation)
 
     if ans == 'quit':
         print('chat say: bye')
