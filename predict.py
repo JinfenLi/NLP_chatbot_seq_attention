@@ -18,6 +18,8 @@ if len(K.tensorflow_backend._get_available_gpus()) > 0:
 from absl import flags
 
 FLAGS = flags.FLAGS
+import sys
+FLAGS(sys.argv)
 flags.DEFINE_string('model_weight_file', './large_files/chatbot/mychatbot_weights.h5', 'load model weight file')
 # make sure we do softmax over the time axis
 # expected shape is N x T x D
@@ -261,4 +263,6 @@ while True:
     if ans == 'quit':
         print('chat say: bye')
         break
+
+
 
